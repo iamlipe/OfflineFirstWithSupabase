@@ -1,20 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { DatabaseProvider } from "@nozbe/watermelondb/DatabaseProvider";
+import { database } from './src/lib/watermelon';
+import { Button, View } from "react-native";
+import { sync } from "./src/lib/sync";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <DatabaseProvider database={database}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+        <Button title="sync" onPress={sync} />
+      </View>    
+    </DatabaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
